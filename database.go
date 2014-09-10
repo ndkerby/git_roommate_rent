@@ -8,6 +8,9 @@ import (
 )
 
 func main() {
+        // TODO: Read in database attributes from external file.
+        // TODO: Create http template
+
         db, err := sql.Open("mysql", "<username>:<password>@<path>/<database_name>")
         defer db.Close()
 
