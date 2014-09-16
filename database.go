@@ -1,14 +1,21 @@
 package main
 
 import (
-        "database/sql"
-        "fmt"
-        "time"
-        "strings"
-        "strconv"
-        "io/ioutil"
-        _ "github.com/go-sql-driver/mysql"
+    "database/sql"
+    "fmt"
+    "time"
+    "strings"
+    "strconv"
+    "io/ioutil"
+    _ "github.com/go-sql-driver/mysql"
+    "net/http"
+    "html/template"
 )
+
+type Page struct {
+    Title string
+    Users []string
+}
 
 func check(e error) {
     if e != nil {
@@ -32,6 +39,19 @@ func main() {
         }
     }
     fmt.Print(variables)
+
+    http.HandleFunc("/", homePage)
+    http.HandleFunc("/save", savePage)
+
+    fileServer := http.StripPrefix("/html/", http.FileServer(http.Dir("html")))
+    http.Handle("/html/", fileServer)
+
+    err := http.ListenAndServe(":8080", nil)
+    if err != nil {
+        fmt.Println(err)
+    }
+
+
 
     // TODO: Create http template
     db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@%s/%s", variables["database_username"], variables["database_password"],  variables["database_path"], variables["database_name"]))

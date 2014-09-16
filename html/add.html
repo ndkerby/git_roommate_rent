@@ -1,0 +1,36 @@
+{{define "body"}}
+
+    <form role="form" action="add" method="post">
+      <div class="form-group">
+        <label for="inputTotalAmount">Total Amount</label>
+        <input type="number" class="form-control" id="totalAmount" placeholder="$10.00">
+      </div>
+      <div class="form-group">
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="natalie_pay" value="option1"> Natalie Paid
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="jean_pay" value="option2"> Jean Paid
+        </label>
+      </div>
+      <div>
+        <select>
+          <option value="groceries">Groceries</option>
+          <option value="dinning_out">Dinning Out</option>
+          <option value="rent">Rent</option>
+          <option value="parking">Parking</option>
+          <option value="electric">Electric</option>
+          <option value="water">Water</option>
+          <option value="internet">Internet</option>
+          <option value="travel">Travel</option>
+          <option value="gas">Travel - Gas</option>
+          <option value="misc">Mics.</option>
+        </select>
+      </div>
+      <div>
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+{{end}}
